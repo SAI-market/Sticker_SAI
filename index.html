@@ -6,22 +6,11 @@
   <title>SAI Stickers - Catálogo</title>
   <link rel="stylesheet" href="css/styles.css" />
 </head>
-
-<div id="previewModal" class="cart-modal hidden" aria-hidden="true">
-  <div class="cart-content" style="max-width:600px;display:flex;flex-direction:column;align-items:center;gap:12px;">
-    <button id="closePreview" class="close-btn">X</button>
-    <img id="previewImg" src="" alt="Vista previa" style="max-width:100%;max-height:80vh;border-radius:12px;" />
-    <div id="previewName" style="color:var(--text);font-weight:600;text-align:center;"></div>
-  </div>
-</div>
-
 <body>
   <header class="topbar">
-    <div class="brand">
-      <div class="logo">SAI</div>
-      <div class="title">Stickers</div>
-    </div>
+    <div class="brand"><div class="logo">SAI</div><div class="title">Stickers</div></div>
     <div class="controls">
+      <button id="themeToggle" title="Cambiar modo">🌙</button>
       <input id="search" placeholder="Buscar stickers..." />
       <button id="contactBtn">Contacto</button>
       <button id="cartBtn">Carrito (<span id="cartCount">0</span>)</button>
@@ -31,73 +20,45 @@
   <main>
     <section class="filters">
       <div id="categoriesContainer" class="categories-container"></div>
-      <label style="margin-left:12px;">
-        <input id="onlySelected" type="checkbox" /> Mostrar solo seleccionados
-      </label>
     </section>
-
     <section id="gallery" class="gallery"></section>
   </main>
 
-  <!-- Modal del carrito -->
-  <div id="cartModal" class="cart-modal hidden" aria-hidden="true">
-    <div class="cart-content">
-      <button id="closeCart" class="close-btn">X</button>
-      <h2>Tu carrito</h2>
-      <div id="cartItems" class="cart-items"></div>
-      <div class="cart-actions">
-        <div id="cartSummary" class="cart-summary"></div>
-        <div class="cart-buttons">
-          <button id="clearCart">Vaciar</button>
-          <button id="checkoutBtn" class="primary">Pagar por WhatsApp</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Modal Selección de Medida -->
-  <div id="sizeModal" class="cart-modal hidden" aria-hidden="true">
+  <div id="sizeModal" class="cart-modal hidden">
     <div class="cart-content">
       <button id="closeSizeModal" class="close-btn">X</button>
       <h2>Elegir medida</h2>
-      <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:12px;">
+      <div style="display:flex; gap:10px; justify-content:center; margin: 20px 0;">
         <button class="size-option" data-size="4x4">4x4</button>
         <button class="size-option" data-size="5x5">5x5</button>
         <button class="size-option" data-size="6x6">6x6</button>
         <button class="size-option" data-size="especial">Especial</button>
       </div>
-      <div id="specialSizeInput" style="margin-top:12px;display:none;">
-        <label>
-          Medida especial: 
-          <input id="customSize" placeholder="Ej: 8x10" style="padding:6px;border-radius:6px;border:1px solid #ccc;"/>
-        </label>
-      </div>
-      <div style="margin-top:18px;text-align:right;">
-        <button id="confirmSizeBtn" class="primary">Agregar</button>
-      </div>
+      <div id="specialSizeInput" style="display:none;"><input id="customSize" placeholder="Ej: 8x10" /></div>
+      <button id="confirmSizeBtn" class="primary" style="width:100%">Confirmar</button>
     </div>
   </div>
 
-  <!-- Modal de contacto -->
-  <div id="contactModal" class="cart-modal hidden" aria-hidden="true">
+  <div id="cartModal" class="cart-modal hidden">
+    <div class="cart-content">
+      <button id="closeCart" class="close-btn">X</button>
+      <h2>Tu carrito</h2>
+      <div id="cartItems"></div>
+      <button class="primary" style="width:100%; margin-top:15px;">Pagar por WhatsApp</button>
+    </div>
+  </div>
+
+  <div id="contactModal" class="cart-modal hidden">
     <div class="cart-content">
       <button id="closeContact" class="close-btn">X</button>
       <h2>Contacto</h2>
-      <div style="margin:12px 0;color:var(--text)">
-        <p>En este apartado podes hacer consultas o dudas que tengas, luego, se mandara directamente a whatsapp</p>
-        <textarea id="contactMessage" placeholder="Escribí tu consulta..." style="width:100%;height:120px;padding:10px;border-radius:8px;border:none;resize:vertical;background:rgba(255,255,255,0.03);color:var(--text)"></textarea>
-      </div>
-      <div style="display:flex;gap:8px;justify-content:flex-end;align-items:center;">
-        <button id="contactClear" style="padding:8px 10px;border-radius:8px;border:1px solid rgba(255,255,255,0.05);background:transparent;color:var(--text);cursor:pointer">Cerrar</button>
-        <button id="contactSend" class="primary" style="background:var(--neon);color:var(--bg);border:none;padding:10px 14px;border-radius:8px;cursor:pointer;font-weight:800">Enviar por WhatsApp</button>
-      </div>
+      <textarea id="contactMessage" placeholder="Escribe tu duda aquí..." style="width:100%; height:100px; margin: 10px 0;"></textarea>
+      <button id="contactSend" class="primary" style="width:100%">Enviar</button>
+      <button id="contactClear" style="width:100%; margin-top:5px; background:none; color:var(--text); border:none; cursor:pointer;">Cerrar</button>
     </div>
   </div>
 
-  <footer class="footer">
-    <small>SAI Stickers • Contacto por WhatsApp</small>
-  </footer>
-
+  <footer class="footer"><small>SAI Stickers • Catálogo 2024</small></footer>
   <script src="js/app.js" type="module"></script>
 </body>
 </html>
