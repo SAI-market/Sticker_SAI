@@ -6,36 +6,13 @@
   <title>SAI Stickers - Catálogo</title>
   <link rel="stylesheet" href="css/styles.css" />
 </head>
+
 <body>
-  <header class="topbar">
-    <div class="brand"><div class="logo">SAI</div><div class="title">Stickers</div></div>
-    <div class="controls">
-      <button id="themeToggle" title="Cambiar modo">🌙</button>
-      <input id="search" placeholder="Buscar stickers..." />
-      <button id="contactBtn">Contacto</button>
-      <button id="cartBtn">Carrito (<span id="cartCount">0</span>)</button>
-    </div>
-  </header>
-
-  <main>
-    <section class="filters">
-      <div id="categoriesContainer" class="categories-container"></div>
-    </section>
-    <section id="gallery" class="gallery"></section>
-  </main>
-
-  <div id="sizeModal" class="cart-modal hidden">
-    <div class="cart-content">
-      <button id="closeSizeModal" class="close-btn">X</button>
-      <h2>Elegir medida</h2>
-      <div style="display:flex; gap:10px; justify-content:center; margin: 20px 0;">
-        <button class="size-option" data-size="4x4">4x4</button>
-        <button class="size-option" data-size="5x5">5x5</button>
-        <button class="size-option" data-size="6x6">6x6</button>
-        <button class="size-option" data-size="especial">Especial</button>
-      </div>
-      <div id="specialSizeInput" style="display:none;"><input id="customSize" placeholder="Ej: 8x10" /></div>
-      <button id="confirmSizeBtn" class="primary" style="width:100%">Confirmar</button>
+  <div id="previewModal" class="cart-modal hidden">
+    <div class="cart-content" style="max-width: 600px; text-align: center;">
+      <button id="closePreview" class="close-btn">X</button>
+      <img id="previewImg" src="" style="max-width: 100%; max-height: 70vh; border-radius: 12px; margin-bottom: 15px; object-fit: contain;">
+      <h2 id="previewName"></h2>
     </div>
   </div>
 
@@ -43,8 +20,43 @@
     <div class="cart-content">
       <button id="closeCart" class="close-btn">X</button>
       <h2>Tu carrito</h2>
-      <div id="cartItems"></div>
-      <button class="primary" style="width:100%; margin-top:15px;">Pagar por WhatsApp</button>
+      <div id="cartItems" class="cart-items" style="max-height: 300px; overflow-y: auto; margin: 15px 0;"></div>
+      <div class="cart-actions" style="margin-top: 15px;">
+        <div id="cartSummary" class="cart-summary" style="font-weight:bold; font-size: 1.2rem; margin-bottom: 15px; border-top: 1px solid rgba(255,255,255,0.2); padding-top: 10px; text-align: right;">Total: $0</div>
+        <div class="cart-buttons" style="display:flex; gap:10px;">
+          <button id="clearCart" style="padding:10px; border-radius:8px; border:1px solid rgba(255,255,255,0.2); background:transparent; color:var(--text); cursor:pointer; flex:1;">Vaciar</button>
+          <button id="checkoutBtn" class="primary" style="flex:2;">Pagar por WhatsApp</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="sizeModal" class="cart-modal hidden">
+    <div class="cart-content" style="max-width: 400px; text-align: center;">
+      <button id="closeSizeModal" class="close-btn">X</button>
+      
+      <h3 style="margin-bottom: 10px;">1. Elegir Material</h3>
+      <div class="material-options-row" style="display:flex; gap:10px; justify-content:center; margin-bottom: 20px;">
+        <button class="material-option active" data-material="sticker">Sticker Base</button>
+        <button class="material-option" data-material="vinilo">Vinilo (Resistente)</button>
+      </div>
+
+      <h3 style="margin-bottom: 10px;">2. Elegir Medida</h3>
+      <div class="size-options-row" style="display:flex; gap:10px; justify-content:center;">
+        <button class="size-option" data-size="4x4">4x4</button>
+        <button class="size-option" data-size="5x5">5x5</button>
+        <button class="size-option" data-size="6x6">6x6</button>
+        <button class="size-option" data-size="especial">Especial</button>
+      </div>
+      <div id="specialSizeInput" style="display:none; margin-top:10px;">
+        <input id="customSize" placeholder="Ej: 8x10" style="width:100%; padding:10px; border-radius:8px; border:none; background:rgba(255,255,255,0.1); color:var(--text);" />
+      </div>
+
+      <div id="priceDisplay" style="font-size: 1.3rem; font-weight: 800; margin: 20px 0; color: var(--neon);">
+        Selecciona para ver precio
+      </div>
+
+      <button id="confirmSizeBtn" class="primary" style="width:100%;">Confirmar y Agregar</button>
     </div>
   </div>
 
@@ -52,13 +64,44 @@
     <div class="cart-content">
       <button id="closeContact" class="close-btn">X</button>
       <h2>Contacto</h2>
-      <textarea id="contactMessage" placeholder="Escribe tu duda aquí..." style="width:100%; height:100px; margin: 10px 0;"></textarea>
-      <button id="contactSend" class="primary" style="width:100%">Enviar</button>
-      <button id="contactClear" style="width:100%; margin-top:5px; background:none; color:var(--text); border:none; cursor:pointer;">Cerrar</button>
+      <div style="margin:12px 0;">
+        <p>Escribe tu consulta y se enviará directamente a WhatsApp:</p>
+        <textarea id="contactMessage" placeholder="Escribí tu consulta..." style="width:100%;height:120px;padding:10px;border-radius:8px;border:none;resize:vertical;background:rgba(255,255,255,0.05);color:var(--text); margin-top:10px;"></textarea>
+      </div>
+      <div style="display:flex;gap:8px;justify-content:flex-end;">
+        <button id="contactClear" style="padding:10px; border-radius:8px; border:1px solid rgba(255,255,255,0.2); background:transparent; color:var(--text); cursor:pointer;">Cerrar</button>
+        <button id="contactSend" class="primary">Enviar</button>
+      </div>
     </div>
   </div>
 
-  <footer class="footer"><small>SAI Stickers • Catálogo 2024</small></footer>
+  <header class="topbar">
+    <div class="brand">
+      <div class="logo">SAI</div>
+      <div class="title">Stickers</div>
+    </div>
+    <div class="controls">
+      <div class="dark-mode-toggle" id="themeToggle">
+        <div class="circle">
+            <ion-icon class="sun" name="sunny"></ion-icon>
+            <ion-icon class="moon" name="moon"></ion-icon>
+        </div>
+      </div>
+      <input id="search" placeholder="Buscar stickers..." />
+      <button id="contactBtn">Contacto</button>
+      <button id="cartBtn">Carrito (<span id="cartCount">0</span>)</button>
+    </div>
+  </header>
+
+  <main>
+    <div id="categoriesContainer" class="categories-container"></div>
+    <section id="gallery" class="gallery"></section>
+  </main>
+
+  <footer class="footer"><small>SAI Stickers • Catálogo</small></footer>
+
+  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
   <script src="js/app.js" type="module"></script>
 </body>
 </html>
