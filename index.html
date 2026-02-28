@@ -20,9 +20,20 @@
     <div class="cart-content">
       <button id="closeCart" class="close-btn">X</button>
       <h2>Tu carrito</h2>
-      <div id="cartItems" class="cart-items" style="max-height: 300px; overflow-y: auto; margin: 15px 0;"></div>
-      <div class="cart-actions" style="margin-top: 15px;">
-        <div id="cartSummary" class="cart-summary" style="font-weight:bold; font-size: 1.2rem; margin-bottom: 15px; border-top: 1px solid rgba(255,255,255,0.2); padding-top: 10px; text-align: right;">Total: $0</div>
+      <div id="cartItems" class="cart-items" style="max-height: 250px; overflow-y: auto; margin: 15px 0;"></div>
+      
+      <div style="background: rgba(255,255,255,0.05); padding: 15px; border-radius: 10px; margin-bottom: 15px;">
+        <h3 style="font-size: 1.1rem; margin-bottom: 10px;">Método de entrega:</h3>
+        <label style="display: flex; align-items: center; gap: 8px; cursor: pointer; margin-bottom: 8px;">
+          <input type="radio" name="shipping" value="retiro" checked /> Retiro en persona (Gratis)
+        </label>
+        <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+          <input type="radio" name="shipping" value="envio" /> Envío ($1500)
+        </label>
+      </div>
+
+      <div class="cart-actions">
+        <div id="cartSummary" class="cart-summary" style="font-size: 1.1rem; margin-bottom: 15px; border-top: 1px solid rgba(255,255,255,0.2); padding-top: 10px; text-align: right; line-height: 1.5;"></div>
         <div class="cart-buttons" style="display:flex; gap:10px;">
           <button id="clearCart" style="padding:10px; border-radius:8px; border:1px solid rgba(255,255,255,0.2); background:transparent; color:var(--text); cursor:pointer; flex:1;">Vaciar</button>
           <button id="checkoutBtn" class="primary" style="flex:2;">Pagar por WhatsApp</button>
@@ -42,7 +53,7 @@
       </div>
 
       <h3 style="margin-bottom: 10px;">2. Elegir Medida</h3>
-      <div class="size-options-row" style="display:flex; gap:10px; justify-content:center;">
+      <div class="size-options-row" style="display:flex; gap:10px; justify-content:center; flex-wrap:wrap;">
         <button class="size-option" data-size="4x4">4x4</button>
         <button class="size-option" data-size="5x5">5x5</button>
         <button class="size-option" data-size="6x6">6x6</button>
@@ -99,6 +110,8 @@
   </main>
 
   <footer class="footer"><small>SAI Stickers • Catálogo</small></footer>
+
+  <button id="scrollTopBtn" class="scroll-top-btn hidden" title="Volver arriba">⬆️</button>
 
   <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
