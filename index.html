@@ -20,7 +20,19 @@
     <div class="cart-content">
       <button id="closeCart" class="close-btn">X</button>
       <h2>Tu carrito</h2>
-      <div id="cartItems" class="cart-items" style="max-height: 250px; overflow-y: auto; margin: 15px 0;"></div>
+      
+      <div class="promo-container">
+        <div class="promo-bar-wrapper">
+          <div class="promo-label">Stickers Base: <span id="stickerPromoText" style="color:var(--neon); font-weight:bold;">0/15 para 10% off</span></div>
+          <div class="progress-bg"><div class="progress-fill" id="stickerProgress"></div></div>
+        </div>
+        <div class="promo-bar-wrapper">
+          <div class="promo-label">Vinilos: <span id="viniloPromoText" style="color:var(--neon); font-weight:bold;">0/15 para 10% off</span></div>
+          <div class="progress-bg"><div class="progress-fill" id="viniloProgress"></div></div>
+        </div>
+      </div>
+
+      <div id="cartItems" class="cart-items" style="max-height: 35vh; overflow-y: auto; margin: 15px 0; padding-right: 10px;"></div>
       
       <div style="background: rgba(255,255,255,0.05); padding: 15px; border-radius: 10px; margin-bottom: 15px;">
         <h3 style="font-size: 1.1rem; margin-bottom: 10px;">Método de entrega:</h3>

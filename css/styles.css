@@ -1,6 +1,6 @@
 :root {
   --bg: #0c546c;
-  --neon: #83d383; /* Verde lima original */
+  --neon: #83d383;
   --accent: #0b4050;
   --card: #0f5860;
   --text: #eafaf7;
@@ -10,14 +10,13 @@
   --toggle-height: 28px;
 }
 
-/* MODO OSCURO ACTIVO */
 body.active {
   --bg: #2d2822;
   --text: #fbfbeb;
   --accent: #3d3832;
   --card: #3d3832;
   --muted: #fbfbeb;
-  --neon: #fbfbeb; /* Transformación del verde a blanquecino en botones y logo */
+  --neon: #fbfbeb;
   background-color: var(--bg) !important;
 }
 
@@ -31,26 +30,26 @@ body {
   transition: background-color 0.4s ease;
 }
 
-/* TOPBAR */
+/* SCROLLBAR PERSONALIZADA (Le da un toque Premium) */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--neon); border-radius: 10px; }
+
 .topbar {
   display: flex; align-items: center; justify-content: space-between;
   background: var(--bg); padding: 12px 20px; color: var(--text);
   box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-  flex-wrap: wrap;
-  gap: 10px;
+  flex-wrap: wrap; gap: 10px;
 }
 
 .brand { display: flex; align-items: center; gap: 12px; }
 
-/* LOGO CUADRADO */
 .logo {
   width: 76px; height: 60px;
-  background: var(--neon);
-  color: var(--bg);
+  background: var(--neon); color: var(--bg);
   font-weight: 800; font-size: 36px;
   display: flex; align-items: center; justify-content: center;
-  border-radius: 12px;
-  box-shadow: 0 4px 0 rgba(0,0,0,0.15) inset;
+  border-radius: 12px; box-shadow: 0 4px 0 rgba(0,0,0,0.15) inset;
   transition: background 0.4s ease, color 0.4s ease;
 }
 .title { font-size: 18px; color: var(--muted); font-weight: bold; }
@@ -68,7 +67,6 @@ body {
 }
 .controls button:hover, .primary:hover { transform: translateY(-2px); }
 
-/* BOTÓN DARK MODE TOGGLE (Importado) */
 .dark-mode-toggle {
     width: var(--toggle-width); height: var(--toggle-height);
     display: flex; align-items: center; border-radius: 999px;
@@ -88,7 +86,6 @@ body.active .moon { transform: translateY(0); }
 .sun { color: #f1c40f; }
 body.active .sun { transform: translateY(120%); }
 
-/* MAIN Y GALERÍA */
 main { flex: 1; padding: 20px; max-width: 1200px; margin: 0 auto; width: 100%; }
 
 .categories-container { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
@@ -100,7 +97,6 @@ main { flex: 1; padding: 20px; max-width: 1200px; margin: 0 auto; width: 100%; }
 
 .gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 20px; }
 
-/* REACTIVIDAD HOVER STICKERS */
 .card {
   background: var(--card); border-radius: 16px; padding: 12px;
   display: flex; flex-direction: column; align-items: center; gap: 10px;
@@ -128,41 +124,54 @@ body.active .card { background: var(--card); }
   display: flex; align-items: center; justify-content: center; z-index: 1000; padding: 15px;
 }
 .cart-modal.hidden { display: none; }
+
+/* FIX DE ALTURA: Limita la caja general a 90vh y permite scroll interno general si la pantalla es enana */
 .cart-content {
   background: linear-gradient(135deg, var(--accent), var(--card));
   padding: 25px; border-radius: 20px; width: 100%; max-width: 500px; color: var(--text);
   position: relative; box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+  max-height: 90vh;
+  overflow-y: auto;
 }
 .close-btn { 
   position: absolute; top: 15px; right: 15px; background: none; 
-  border: none; color: var(--text); font-size: 24px; cursor: pointer; font-weight: bold;
-}
-.size-option, .material-option { 
-  padding: 10px 15px; border-radius: 8px; border: 1px solid var(--neon); 
-  background: transparent; color: var(--text); cursor: pointer; 
-  font-weight: bold; transition: 0.3s; 
-}
-.size-option.active, .material-option.active { 
-  background: var(--neon); color: var(--bg); 
-}
-.primary { 
-  background: var(--neon); color: var(--bg); border: none; 
-  padding: 12px; border-radius: 8px; cursor: pointer; 
-  font-weight: 800; font-size: 15px; transition: 0.4s; 
+  border: none; color: var(--text); font-size: 24px; cursor: pointer; font-weight: bold; z-index: 10;
 }
 
-/* BOTÓN FLOTANTE SUBIR ARRIBA */
+/* BARRAS DE PROMO */
+.promo-container { background: rgba(255,255,255,0.05); padding: 15px; border-radius: 10px; margin-top: 10px; }
+.promo-bar-wrapper { margin-bottom: 10px; }
+.promo-bar-wrapper:last-child { margin-bottom: 0; }
+.promo-label { font-size: 0.9rem; margin-bottom: 5px; display: flex; justify-content: space-between;}
+.progress-bg { width: 100%; height: 8px; background: rgba(255,255,255,0.2); border-radius: 4px; overflow: hidden; }
+.progress-fill { height: 100%; background: var(--neon); width: 0%; transition: width 0.4s ease, background 0.4s ease; }
+
+.size-option, .material-option { 
+  padding: 10px 15px; border-radius: 8px; border: 1px solid var(--neon); 
+  background: transparent; color: var(--text); cursor: pointer; font-weight: bold; transition: 0.3s; 
+}
+.size-option.active, .material-option.active { background: var(--neon); color: var(--bg); }
+.primary { background: var(--neon); color: var(--bg); border: none; padding: 12px; border-radius: 8px; cursor: pointer; font-weight: 800; font-size: 15px; transition: 0.4s; }
+
 .scroll-top-btn {
-  position: fixed; bottom: 30px; right: 30px;
-  width: 50px; height: 50px; border-radius: 50%;
-  background: var(--neon); color: var(--bg);
-  border: none; font-size: 20px; cursor: pointer;
-  box-shadow: 0 6px 15px rgba(0,0,0,0.3);
-  transition: opacity 0.3s, transform 0.3s, background 0.4s, color 0.4s;
+  position: fixed; bottom: 30px; right: 30px; width: 50px; height: 50px; border-radius: 50%;
+  background: var(--neon); color: var(--bg); border: none; font-size: 20px; cursor: pointer;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.3); transition: opacity 0.3s, transform 0.3s, background 0.4s, color 0.4s;
   z-index: 99; display: flex; align-items: center; justify-content: center;
 }
 .scroll-top-btn.hidden { opacity: 0; pointer-events: none; transform: translateY(20px); }
 .scroll-top-btn:hover { transform: scale(1.1); }
+
+/* BOTONES SUMAR/RESTAR DEL CARRITO */
+.qty-btn {
+  background: rgba(255,255,255,0.1); color: var(--text);
+  border: none; border-radius: 6px; width: 26px; height: 26px;
+  font-weight: bold; font-size: 1.1rem; cursor: pointer;
+  display: flex; align-items: center; justify-content: center; transition: 0.3s;
+}
+.qty-btn:hover { background: var(--neon); color: var(--bg); }
+body.active .qty-btn { background: rgba(255,255,255,0.05); color: #fbfbeb; }
+body.active .qty-btn:hover { background: var(--neon); color: #2d2822; }
 
 /* FORZAR COLOR BLANCO EN MODO OSCURO */
 body.active .filters, body.active .footer, body.active .title,
